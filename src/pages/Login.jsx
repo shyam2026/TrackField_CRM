@@ -86,7 +86,7 @@ export default function Login() {
         {/* Hero text */}
         <div>
           <div className="mb-6">
-            <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-700 mb-4"
+            <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-700 mt-4 mb-4"
               style={{ background: 'rgba(14,165,233,0.12)', color: '#0EA5E9', border: '1px solid rgba(14,165,233,0.2)' }}>
               ● B2B CRM PLATFORM
             </span>
@@ -118,7 +118,7 @@ export default function Login() {
         </div>
 
         {/* Stats */}
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-3 gap-4 mt-3">
           {[
             { value: '5K+', label: 'Companies' },
             { value: '99.9%', label: 'Uptime' },
@@ -211,7 +211,7 @@ export default function Login() {
           </form>
 
           {/* Demo accounts */}
-          <div>
+          {/* <div>
             <p className="text-xs font-700 uppercase tracking-widest mb-3" style={{ color: 'var(--text-muted)' }}>
               Quick Demo Access
             </p>
@@ -243,7 +243,7 @@ export default function Login() {
                 );
               })}
             </div>
-          </div>
+          </div> */}
 
           <p className="text-xs text-center mt-6" style={{ color: 'var(--text-muted)' }}>
             TrackField CRM — B2B SaaS Platform

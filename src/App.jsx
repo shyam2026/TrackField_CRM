@@ -36,6 +36,7 @@ import UMyDeals from './pages/UserDashboard/MyDeals';
 import UTasks from './pages/UserDashboard/Tasks';
 import UContacts from './pages/UserDashboard/Contacts';
 import UTickets from './pages/UserDashboard/Tickets';
+import UProfile from './pages/UserDashboard/Profile';
 
 function ProtectedRoute({ children, allowedRoles }) {
   const { currentUser } = useAuth();
@@ -102,6 +103,7 @@ function AppRoutes() {
         </ProtectedRoute>
       }>
         <Route path="dashboard"  element={<UDashboard />} />
+        <Route path="profile"    element={<UProfile />} />
         <Route path="leads"      element={<UMyLeads />} />
         <Route path="deals"      element={<UMyDeals />} />
         <Route path="tasks"      element={<UTasks />} />

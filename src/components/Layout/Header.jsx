@@ -60,7 +60,7 @@ export default function Header({ role, onMenuToggle }) {
           <Menu size={18} />
         </button>
         <div className="relative hidden md:block">
-          <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2" style={{ color:'var(--text-muted)' }} />
+          <Search size={14} className="absolute right-3 top-1/2 -translate-y-1/2" style={{ color:'var(--text-muted)' }} />
           <input placeholder="Search anything..." className="input-field pl-9" style={{ width:280, height:36, fontSize:13 }} />
         </div>
       </div>
