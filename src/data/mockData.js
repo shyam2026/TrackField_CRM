@@ -105,22 +105,54 @@ export const initialCompanies = [
 ];
 
 export const initialUsers = [
-  // Nexora Solutions (c1)
-  { id: 'u1',  companyId: 'c1', name: 'Arjun Mehta',   email: 'admin@nexora.io',      password: 'admin123', role: 'company_admin', department: 'Management', status: 'active', lastLogin: '2 hours ago',   avatar: 'AM' },
-  { id: 'u2',  companyId: 'c1', name: 'Rohan Das',     email: 'rohan@nexora.io',      password: 'user123',  role: 'sales',         department: 'Sales',      status: 'active', lastLogin: '1 hour ago',    avatar: 'RD' },
-  { id: 'u3',  companyId: 'c1', name: 'Kavya Nair',    email: 'kavya@nexora.io',      password: 'user123',  role: 'manager',       department: 'Sales',      status: 'active', lastLogin: '30 mins ago',   avatar: 'KN' },
-  { id: 'u4',  companyId: 'c1', name: 'Aditya Singh',  email: 'aditya@nexora.io',     password: 'user123',  role: 'support',       department: 'Support',    status: 'active', lastLogin: '3 hours ago',   avatar: 'AS' },
-  { id: 'u5',  companyId: 'c1', name: 'Meera Patel',   email: 'meera@nexora.io',      password: 'user123',  role: 'finance',       department: 'Finance',    status: 'active', lastLogin: 'Yesterday',     avatar: 'MP' },
-  // BlueWave (c2)
-  { id: 'u6',  companyId: 'c2', name: 'Priya Sharma',  email: 'admin@bluewave.com',   password: 'admin123', role: 'company_admin', department: 'Management', status: 'active', lastLogin: '5 hours ago',   avatar: 'PS' },
-  { id: 'u7',  companyId: 'c2', name: 'Vikram Joshi',  email: 'vikram@bluewave.com',  password: 'user123',  role: 'sales',         department: 'Sales',      status: 'active', lastLogin: '2 days ago',    avatar: 'VJ' },
-  { id: 'u8',  companyId: 'c2', name: 'Ananya Roy',    email: 'ananya@bluewave.com',  password: 'user123',  role: 'manager',       department: 'Sales',      status: 'active', lastLogin: 'Yesterday',     avatar: 'AR' },
-  // EduPath (c3)
-  { id: 'u9',  companyId: 'c3', name: 'Rahul Verma',   email: 'admin@edupathacademy.in', password: 'admin123', role: 'company_admin', department: 'Management', status: 'active', lastLogin: '1 day ago',  avatar: 'RV' },
-  { id: 'u10', companyId: 'c3', name: 'Sana Khan',     email: 'sana@edupathacademy.in',  password: 'user123',  role: 'sales',         department: 'Admissions', status: 'active', lastLogin: '4 hours ago', avatar: 'SK' },
-  // FinVault (c4)
-  { id: 'u11', companyId: 'c4', name: 'Sneha Iyer',    email: 'admin@finvault.co',    password: 'admin123', role: 'company_admin', department: 'Management', status: 'active', lastLogin: '1 hour ago',   avatar: 'SI' },
-  { id: 'u12', companyId: 'c4', name: 'Nikhil Gupta',  email: 'nikhil@finvault.co',   password: 'user123',  role: 'manager',       department: 'Sales',      status: 'active', lastLogin: '2 hours ago',  avatar: 'NG' },
+  // ── Nexora Solutions (c1) — MNC Enterprise (18 users) ──────────────────────
+  { id: 'u1',  companyId: 'c1', name: 'Arjun Mehta',      email: 'admin@nexora.io',          password: 'admin123', role: 'company_admin',    department: 'Executive',        status: 'active',    lastLogin: '2 hours ago',   avatar: 'AM' },
+  { id: 'u2',  companyId: 'c1', name: 'Rohan Das',         email: 'rohan@nexora.io',          password: 'user123',  role: 'sales',             department: 'Sales',            status: 'active',    lastLogin: '1 hour ago',    avatar: 'RD' },
+  { id: 'u3',  companyId: 'c1', name: 'Kavya Nair',        email: 'kavya@nexora.io',          password: 'user123',  role: 'manager',           department: 'Sales',            status: 'active',    lastLogin: '30 mins ago',   avatar: 'KN' },
+  { id: 'u4',  companyId: 'c1', name: 'Aditya Singh',      email: 'aditya@nexora.io',         password: 'user123',  role: 'support',           department: 'Customer Support', status: 'active',    lastLogin: '3 hours ago',   avatar: 'AS' },
+  { id: 'u5',  companyId: 'c1', name: 'Meera Patel',       email: 'meera@nexora.io',          password: 'user123',  role: 'finance',           department: 'Finance',          status: 'active',    lastLogin: 'Yesterday',     avatar: 'MP' },
+  { id: 'u13', companyId: 'c1', name: 'Tanya Krishnan',    email: 'tanya@nexora.io',          password: 'user123',  role: 'marketing',         department: 'Marketing',        status: 'active',    lastLogin: '5 hours ago',   avatar: 'TK' },
+  { id: 'u14', companyId: 'c1', name: 'Sameer Qureshi',    email: 'sameer@nexora.io',         password: 'user123',  role: 'hr',                department: 'Human Resources',  status: 'active',    lastLogin: 'Today',         avatar: 'SQ' },
+  { id: 'u15', companyId: 'c1', name: 'Divya Pillai',      email: 'divya@nexora.io',          password: 'user123',  role: 'operations',        department: 'Operations',       status: 'active',    lastLogin: '2 hours ago',   avatar: 'DP' },
+  { id: 'u16', companyId: 'c1', name: 'Yash Thakur',       email: 'yash@nexora.io',           password: 'user123',  role: 'customer_success',  department: 'Customer Success', status: 'active',    lastLogin: '1 hour ago',    avatar: 'YT' },
+  { id: 'u17', companyId: 'c1', name: 'Pooja Menon',       email: 'pooja@nexora.io',          password: 'user123',  role: 'legal',             department: 'Legal',            status: 'active',    lastLogin: '3 days ago',    avatar: 'PM' },
+  { id: 'u18', companyId: 'c1', name: 'Ravi Shankar',      email: 'ravi@nexora.io',           password: 'user123',  role: 'sales',             department: 'Sales',            status: 'active',    lastLogin: '6 hours ago',   avatar: 'RS' },
+  { id: 'u19', companyId: 'c1', name: 'Nisha Bhatia',      email: 'nisha@nexora.io',          password: 'user123',  role: 'sales',             department: 'Sales',            status: 'active',    lastLogin: 'Today',         avatar: 'NB' },
+  { id: 'u20', companyId: 'c1', name: 'Kartik Chandra',    email: 'kartik@nexora.io',         password: 'user123',  role: 'support',           department: 'Customer Support', status: 'active',    lastLogin: '45 mins ago',   avatar: 'KC' },
+  { id: 'u21', companyId: 'c1', name: 'Anjali Desai',      email: 'anjali.d@nexora.io',       password: 'user123',  role: 'marketing',         department: 'Marketing',        status: 'active',    lastLogin: 'Yesterday',     avatar: 'AD' },
+  { id: 'u22', companyId: 'c1', name: 'Pranav Sethi',      email: 'pranav@nexora.io',         password: 'user123',  role: 'customer_success',  department: 'Customer Success', status: 'active',    lastLogin: '2 hours ago',   avatar: 'PS2'},
+  { id: 'u23', companyId: 'c1', name: 'Lavanya Rao',       email: 'lavanya@nexora.io',        password: 'user123',  role: 'operations',        department: 'Operations',       status: 'suspended', lastLogin: '1 week ago',    avatar: 'LR' },
+  { id: 'u24', companyId: 'c1', name: 'Deepak Jha',        email: 'deepak@nexora.io',         password: 'user123',  role: 'finance',           department: 'Finance',          status: 'active',    lastLogin: 'Today',         avatar: 'DJ' },
+  { id: 'u25', companyId: 'c1', name: 'Simran Kaur',       email: 'simran@nexora.io',         password: 'user123',  role: 'hr',                department: 'Human Resources',  status: 'active',    lastLogin: '4 hours ago',   avatar: 'SK2'},
+
+  // ── BlueWave Retail (c2) — Pro (9 users) ────────────────────────────────────
+  { id: 'u6',  companyId: 'c2', name: 'Priya Sharma',      email: 'admin@bluewave.com',       password: 'admin123', role: 'company_admin',    department: 'Executive',        status: 'active',    lastLogin: '5 hours ago',   avatar: 'PS' },
+  { id: 'u7',  companyId: 'c2', name: 'Vikram Joshi',      email: 'vikram@bluewave.com',      password: 'user123',  role: 'sales',             department: 'Sales',            status: 'active',    lastLogin: '2 days ago',    avatar: 'VJ' },
+  { id: 'u8',  companyId: 'c2', name: 'Ananya Roy',        email: 'ananya@bluewave.com',      password: 'user123',  role: 'manager',           department: 'Sales',            status: 'active',    lastLogin: 'Yesterday',     avatar: 'AR' },
+  { id: 'u26', companyId: 'c2', name: 'Harsh Vardhan',     email: 'harsh@bluewave.com',       password: 'user123',  role: 'marketing',         department: 'Marketing',        status: 'active',    lastLogin: 'Today',         avatar: 'HV' },
+  { id: 'u27', companyId: 'c2', name: 'Shruti Agarwal',    email: 'shruti@bluewave.com',      password: 'user123',  role: 'support',           department: 'Customer Support', status: 'active',    lastLogin: '1 day ago',     avatar: 'SA' },
+  { id: 'u28', companyId: 'c2', name: 'Mohit Rawat',       email: 'mohit@bluewave.com',       password: 'user123',  role: 'finance',           department: 'Finance',          status: 'active',    lastLogin: 'Yesterday',     avatar: 'MR' },
+  { id: 'u29', companyId: 'c2', name: 'Geeta Pillai',      email: 'geeta@bluewave.com',       password: 'user123',  role: 'operations',        department: 'Operations',       status: 'active',    lastLogin: '3 hours ago',   avatar: 'GP' },
+  { id: 'u30', companyId: 'c2', name: 'Tanvi Mehta',       email: 'tanvi@bluewave.com',       password: 'user123',  role: 'customer_success',  department: 'Customer Success', status: 'active',    lastLogin: 'Today',         avatar: 'TM' },
+  { id: 'u31', companyId: 'c2', name: 'Dev Khanna',        email: 'dev@bluewave.com',         password: 'user123',  role: 'sales',             department: 'Sales',            status: 'suspended', lastLogin: '2 weeks ago',   avatar: 'DK' },
+
+  // ── EduPath Academy (c3) — Pro (6 users) ────────────────────────────────────
+  { id: 'u9',  companyId: 'c3', name: 'Rahul Verma',       email: 'admin@edupathacademy.in',  password: 'admin123', role: 'company_admin',    department: 'Executive',        status: 'active',    lastLogin: '1 day ago',     avatar: 'RV' },
+  { id: 'u10', companyId: 'c3', name: 'Sana Khan',         email: 'sana@edupathacademy.in',   password: 'user123',  role: 'sales',             department: 'Admissions',       status: 'active',    lastLogin: '4 hours ago',   avatar: 'SK' },
+  { id: 'u32', companyId: 'c3', name: 'Ishaan Tripathi',   email: 'ishaan@edupathacademy.in', password: 'user123',  role: 'marketing',         department: 'Marketing',        status: 'active',    lastLogin: 'Today',         avatar: 'IT' },
+  { id: 'u33', companyId: 'c3', name: 'Fatima Sheikh',     email: 'fatima@edupathacademy.in', password: 'user123',  role: 'support',           department: 'Student Support',  status: 'active',    lastLogin: '2 hours ago',   avatar: 'FS' },
+  { id: 'u34', companyId: 'c3', name: 'Ramesh Nair',       email: 'ramesh@edupathacademy.in', password: 'user123',  role: 'operations',        department: 'Operations',       status: 'active',    lastLogin: 'Yesterday',     avatar: 'RN' },
+  { id: 'u35', companyId: 'c3', name: 'Chitra Bose',       email: 'chitra@edupathacademy.in', password: 'user123',  role: 'hr',                department: 'Human Resources',  status: 'active',    lastLogin: '6 hours ago',   avatar: 'CB' },
+
+  // ── FinVault Capital (c4) — Enterprise (8 users) ────────────────────────────
+  { id: 'u11', companyId: 'c4', name: 'Sneha Iyer',        email: 'admin@finvault.co',        password: 'admin123', role: 'company_admin',    department: 'Executive',        status: 'active',    lastLogin: '1 hour ago',    avatar: 'SI' },
+  { id: 'u12', companyId: 'c4', name: 'Nikhil Gupta',      email: 'nikhil@finvault.co',       password: 'user123',  role: 'manager',           department: 'Sales',            status: 'active',    lastLogin: '2 hours ago',   avatar: 'NG' },
+  { id: 'u36', companyId: 'c4', name: 'Aisha Siddiqui',    email: 'aisha@finvault.co',        password: 'user123',  role: 'finance',           department: 'Finance',          status: 'active',    lastLogin: 'Today',         avatar: 'AS2'},
+  { id: 'u37', companyId: 'c4', name: 'Rajat Malhotra',    email: 'rajat@finvault.co',        password: 'user123',  role: 'legal',             department: 'Legal & Compliance', status: 'active', lastLogin: '1 day ago',     avatar: 'RM' },
+  { id: 'u38', companyId: 'c4', name: 'Sunita Rangan',     email: 'sunita@finvault.co',       password: 'user123',  role: 'customer_success',  department: 'Client Success',   status: 'active',    lastLogin: '3 hours ago',   avatar: 'SR' },
+  { id: 'u39', companyId: 'c4', name: 'Varun Pandey',      email: 'varun@finvault.co',        password: 'user123',  role: 'sales',             department: 'Sales',            status: 'active',    lastLogin: 'Today',         avatar: 'VP' },
+  { id: 'u40', companyId: 'c4', name: 'Manisha Kohli',     email: 'manisha@finvault.co',      password: 'user123',  role: 'hr',                department: 'Human Resources',  status: 'active',    lastLogin: 'Yesterday',     avatar: 'MK' },
+  { id: 'u41', companyId: 'c4', name: 'Aman Batra',        email: 'aman@finvault.co',         password: 'user123',  role: 'operations',        department: 'Operations',       status: 'suspended', lastLogin: '3 weeks ago',   avatar: 'AB' },
 ];
 
 export const initialLeads = [
@@ -218,12 +250,12 @@ export const DEFAULT_ROLE_PERMISSIONS = {
 };
 
 export const REVENUE_DATA = [
-  { month: 'Aug', revenue: 8200 },
-  { month: 'Sep', revenue: 11400 },
-  { month: 'Oct', revenue: 13800 },
-  { month: 'Nov', revenue: 10200 },
-  { month: 'Dec', revenue: 15600 },
-  { month: 'Jan', revenue: 19800 },
+  { month: 'Aug', revenue: 8200,  free: 0,    pro: 4900,  enterprise: 3300 },
+  { month: 'Sep', revenue: 11400, free: 0,    pro: 5880,  enterprise: 5520 },
+  { month: 'Oct', revenue: 13800, free: 0,    pro: 7350,  enterprise: 6450 },
+  { month: 'Nov', revenue: 10200, free: 0,    pro: 4410,  enterprise: 5790 },
+  { month: 'Dec', revenue: 15600, free: 0,    pro: 7350,  enterprise: 8250 },
+  { month: 'Jan', revenue: 19800, free: 0,    pro: 8820,  enterprise: 10980 },
 ];
 
 export const LEAD_SOURCE_DATA = [
@@ -242,3 +274,89 @@ export const CONVERSION_DATA = [
   { month: 'Dec', rate: 22 },
   { month: 'Jan', rate: 27 },
 ];
+
+// ─── PLATFORM HEALTH ──────────────────────────────────────────────────────────
+export const PLATFORM_HEALTH = {
+  uptime: 99.97,
+  apiResponseMs: 142,
+  activeSessions: 47,
+  errorRate: 0.03,
+  dbUsagePercent: 38,
+  storageUsedGB: 84,
+  storageTotalGB: 500,
+};
+
+export const API_RESPONSE_TREND = [
+  { time: '12am', ms: 128 }, { time: '2am', ms: 115 }, { time: '4am', ms: 109 },
+  { time: '6am', ms: 132 }, { time: '8am', ms: 189 }, { time: '10am', ms: 175 },
+  { time: '12pm', ms: 198 }, { time: '2pm', ms: 165 }, { time: '4pm', ms: 143 },
+  { time: '6pm', ms: 157 }, { time: '8pm', ms: 144 }, { time: '10pm', ms: 136 },
+];
+
+export const SESSION_TREND = [
+  { time: '12am', sessions: 3 }, { time: '2am', sessions: 2 }, { time: '4am', sessions: 1 },
+  { time: '6am', sessions: 5 }, { time: '8am', sessions: 18 }, { time: '10am', sessions: 34 },
+  { time: '12pm', sessions: 47 }, { time: '2pm', sessions: 41 }, { time: '4pm', sessions: 39 },
+  { time: '6pm', sessions: 28 }, { time: '8pm', sessions: 19 }, { time: '10pm', sessions: 11 },
+];
+
+// ─── COMPANY HEALTH SCORES ────────────────────────────────────────────────────
+export const COMPANY_HEALTH = [
+  { companyId: 'c1', healthScore: 94, activityToday: 23, logins7d: 41, moduleUsage: 11 },
+  { companyId: 'c2', healthScore: 72, activityToday: 8,  logins7d: 19, moduleUsage: 6  },
+  { companyId: 'c3', healthScore: 81, activityToday: 12, logins7d: 27, moduleUsage: 7  },
+  { companyId: 'c4', healthScore: 97, activityToday: 31, logins7d: 58, moduleUsage: 12 },
+  { companyId: 'c5', healthScore: 18, activityToday: 0,  logins7d: 2,  moduleUsage: 3  },
+];
+
+// ─── CHURN RISK ───────────────────────────────────────────────────────────────
+export const CHURN_RISK = [
+  { companyId: 'c5', risk: 'critical', reason: 'No login in 14 days · Free plan · Low usage',  score: 92 },
+  { companyId: 'c2', risk: 'medium',   reason: 'Module usage dropped 40% vs last month',        score: 45 },
+  { companyId: 'c3', risk: 'low',      reason: 'Renewal due in 7 days · Pro plan',               score: 22 },
+];
+
+// ─── MODULE USAGE ACROSS PLATFORM ────────────────────────────────────────────
+export const MODULE_USAGE = [
+  { module: 'Leads',       companies: 5, usageRate: 100 },
+  { module: 'Deals',       companies: 4, usageRate: 80  },
+  { module: 'Contacts',    companies: 4, usageRate: 80  },
+  { module: 'Tasks',       companies: 5, usageRate: 100 },
+  { module: 'Reports',     companies: 4, usageRate: 80  },
+  { module: 'Automation',  companies: 3, usageRate: 60  },
+  { module: 'Payments',    companies: 2, usageRate: 40  },
+  { module: 'Emails',      companies: 4, usageRate: 80  },
+  { module: 'AI Features', companies: 2, usageRate: 40  },
+  { module: 'Tickets',     companies: 2, usageRate: 40  },
+  { module: 'Integrations',companies: 2, usageRate: 40  },
+  { module: 'Custom Fields',companies: 2, usageRate: 40 },
+];
+
+// ─── REVENUE BY COMPANY ───────────────────────────────────────────────────────
+export const REVENUE_BY_COMPANY = [
+  { id: 'c1', name: 'Nexora Solutions', mrr: 2388, plan: 'enterprise', growth: 12, deals: 5 },
+  { id: 'c4', name: 'FinVault Capital',  mrr: 2388, plan: 'enterprise', growth: 8,  deals: 3 },
+  { id: 'c2', name: 'BlueWave Retail',   mrr: 588,  plan: 'pro',        growth: -3, deals: 2 },
+  { id: 'c3', name: 'EduPath Academy',   mrr: 588,  plan: 'pro',        growth: 5,  deals: 2 },
+  { id: 'c5', name: 'Sparkify Media',    mrr: 0,    plan: 'free',       growth: 0,  deals: 0 },
+];
+
+// ─── PLATFORM-LEVEL ALERTS ────────────────────────────────────────────────────
+export const PLATFORM_ALERTS = [
+  { id: 'a1', type: 'warning', message: 'Sparkify Media has been inactive for 14+ days', time: '2 hours ago' },
+  { id: 'a2', type: 'info',    message: 'BlueWave Retail module usage down 40% this week', time: '5 hours ago' },
+  { id: 'a3', type: 'success', message: 'FinVault Capital renewed Enterprise plan', time: 'Yesterday' },
+  { id: 'a4', type: 'warning', message: 'EduPath Academy renewal due in 7 days', time: 'Yesterday' },
+  { id: 'a5', type: 'info',    message: 'Platform API response time spiked at 12pm (198ms)', time: 'Today' },
+];
+
+// ─── SIGNUP / GROWTH TREND ───────────────────────────────────────────────────
+export const SIGNUP_TREND = [
+  { month: 'Aug', companies: 1, users: 4  },
+  { month: 'Sep', companies: 2, users: 9  },
+  { month: 'Oct', companies: 3, users: 14 },
+  { month: 'Nov', companies: 3, users: 18 },
+  { month: 'Dec', companies: 4, users: 26 },
+  { month: 'Jan', companies: 5, users: 34 },
+];
+

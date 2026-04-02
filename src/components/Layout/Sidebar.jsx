@@ -6,15 +6,18 @@ import {
   Zap, Settings, Package, ChevronLeft, ChevronRight,
   LogOut, TrendingUp, CheckSquare, Contact, Ticket,
   Shield, Layers, Calendar, Activity, UserCircle,
+  DollarSign, Server,
 } from 'lucide-react';
 
 const SUPER_ADMIN_NAV = [
-  { path: '/admin/dashboard',    label: 'Dashboard',     icon: LayoutDashboard },
-  { path: '/admin/companies',    label: 'Companies',     icon: Building2 },
-  { path: '/admin/users',        label: 'All Users',     icon: Users },
-  { path: '/admin/plans',        label: 'Plans',         icon: Package },
-  { path: '/admin/analytics',    label: 'Analytics',     icon: BarChart2 },
-  { path: '/admin/activity-log', label: 'Activity Log',  icon: Activity },
+  { path: '/admin/dashboard',    label: 'Dashboard',      icon: LayoutDashboard },
+  { path: '/admin/companies',    label: 'Companies',      icon: Building2 },
+  { path: '/admin/users',        label: 'All Users',      icon: Users },
+  { path: '/admin/plans',        label: 'Plans & Billing',icon: Package },
+  { path: '/admin/revenue',      label: 'Revenue',        icon: DollarSign },
+  { path: '/admin/analytics',    label: 'Analytics',      icon: BarChart2 },
+  { path: '/admin/system',       label: 'System Health',  icon: Server },
+  { path: '/admin/activity-log', label: 'Activity Log',   icon: Activity },
 ];
 
 const COMPANY_ADMIN_NAV = [
@@ -227,42 +230,4 @@ export default function Sidebar({ role, open, setOpen }) {
       </div>
     </aside>
   );
-}
-// import {
-//   LayoutDashboard, Building2, Users, CreditCard, BarChart2,
-//   UserCog, Zap, Settings, Package, ChevronLeft, ChevronRight,
-//   LogOut, TrendingUp, CheckSquare, Contact, Ticket, Mail,
-//   Shield, FileText, Layers, Calendar, Activity
-// } from 'lucide-react';
-
-// const SUPER_ADMIN_NAV = [
-//   { path: '/admin/dashboard',    label: 'Dashboard',     icon: LayoutDashboard },
-//   { path: '/admin/companies',    label: 'Companies',     icon: Building2 },
-//   { path: '/admin/users',        label: 'All Users',     icon: Users },
-//   { path: '/admin/plans',        label: 'Plans',         icon: Package },
-//   { path: '/admin/analytics',    label: 'Analytics',     icon: BarChart2 },
-//   { path: '/admin/activity-log', label: 'Activity Log',  icon: Activity },
-// ];
-
-// const COMPANY_ADMIN_NAV = [
-//   { path: '/company/dashboard',  label: 'Dashboard',      icon: LayoutDashboard },
-//   { path: '/company/employees',  label: 'Employees',      icon: Users },
-//   { path: '/company/leads',      label: 'Leads',          icon: TrendingUp,  module: 'leads' },
-//   { path: '/company/deals',      label: 'Deals',          icon: Layers,      module: 'deals' },
-//   { path: '/company/contacts',   label: 'Contacts',       icon: Contact,     module: 'contacts' },
-//   { path: '/company/calendar',   label: 'Calendar',       icon: Calendar,    module: 'tasks' },
-//   { path: '/company/payments',   label: 'Payments',       icon: CreditCard,  module: 'payments' },
-//   { path: '/company/automation', label: 'Automation',     icon: Zap,         module: 'automation' },
-//   { path: '/company/reports',    label: 'Reports',        icon: BarChart2,   module: 'reports' },
-//   { path: '/company/modules',    label: 'Module Control', icon: Shield },
-//   { path: '/company/settings',   label: 'Settings',       icon: Settings },
-// ];
-
-// const USER_NAV_BASE = [
-//   { path: '/user/dashboard', label: 'Dashboard',  icon: LayoutDashboard },
-//   { path: '/user/leads',     label: 'My Leads',   icon: TrendingUp,  module: 'leads',    roles: ['sales','manager'] },
-//   { path: '/user/deals',     label: 'My Deals',   icon: Layers,      module: 'deals',    roles: ['sales','manager'] },
-//   { path: '/user/tasks',     label: 'Tasks',      icon: CheckSquare, module: 'tasks' },
-//   { path: '/user/contacts',  label: 'Contacts',   icon: Contact,     module: 'contacts', roles: ['sales','manager','support'] },
-//   { path: '/user/tickets',   label: 'Tickets',    icon: Ticket,      module: 'tickets',  roles: ['support','manager'] },
-// ];
+}

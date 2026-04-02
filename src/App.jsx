@@ -7,11 +7,13 @@ import Login from './pages/Login';
 import Layout from './components/Layout/Layout';
 
 // Super Admin
-import SADashboard from './pages/SuperAdmin/Dashboard';
-import SACompanies from './pages/SuperAdmin/Companies';
-import SAUsers from './pages/SuperAdmin/Users';
-import SAPlans from './pages/SuperAdmin/Plans';
-import SAAnalytics from './pages/SuperAdmin/Analytics';
+import SADashboard    from './pages/SuperAdmin/Dashboard';
+import SACompanies   from './pages/SuperAdmin/Companies';
+import SAUsers       from './pages/SuperAdmin/Users';
+import SAPlans       from './pages/SuperAdmin/Plans';
+import SAAnalytics   from './pages/SuperAdmin/Analytics';
+import SASystemHealth from './pages/SuperAdmin/SystemHealth';
+import SARevenue     from './pages/SuperAdmin/Revenue';
 
 // Company Admin
 import CADashboard from './pages/CompanyAdmin/Dashboard';
@@ -73,6 +75,8 @@ function AppRoutes() {
         <Route path="plans"        element={<SAPlans />} />
         <Route path="analytics"    element={<SAAnalytics />} />
         <Route path="activity-log" element={<SAActivityLog />} />
+        <Route path="system"       element={<SASystemHealth />} />
+        <Route path="revenue"      element={<SARevenue />} />
         <Route index element={<Navigate to="dashboard" replace />} />
       </Route>
 
