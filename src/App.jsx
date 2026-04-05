@@ -102,7 +102,7 @@ function AppRoutes() {
 
       {/* ── USER DASHBOARD ── */}
       <Route path="/user" element={
-        <ProtectedRoute allowedRoles={['sales','manager','support','finance']}>
+        <ProtectedRoute allowedRoles={['sales','manager','support','finance','marketing','hr','operations','customer_success','legal']}>
           <Layout role="user" />
         </ProtectedRoute>
       }>

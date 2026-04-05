@@ -1,6 +1,6 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Menu, Bell, Search, LogOut, ChevronDown, TrendingUp, CheckSquare, Building2, Zap, X } from 'lucide-react';
+import { Menu, Bell, Search, LogOut, ChevronDown, TrendingUp, CheckSquare, Building2, Zap, X, Layers, Users, Sun, Moon } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 
 const MOCK_NOTIFICATIONS = [
@@ -12,25 +12,63 @@ const MOCK_NOTIFICATIONS = [
 ];
 
 export default function Header({ role, onMenuToggle }) {
-  const { currentUser, currentCompany, logout } = useAuth();
+  const { currentUser, currentCompany, logout, leads, deals, users } = useAuth();
   const navigate = useNavigate();
   const [showUserMenu,  setShowUserMenu]  = useState(false);
   const [showNotifs,    setShowNotifs]    = useState(false);
   const [notifs,        setNotifs]        = useState(MOCK_NOTIFICATIONS);
-  const notifRef = useRef(null);
-  const userRef  = useRef(null);
+  const [searchQuery,   setSearchQuery]   = useState('');
+  const [searchResults, setSearchResults] = useState([]);
+  const [showSearch,    setShowSearch]    = useState(false);
+  const [isDark, setIsDark] = useState(() => {
+    const saved = localStorage.getItem('tf-theme');
+    return saved ? saved === 'dark' : true;
+  });
+  const notifRef  = useRef(null);
+  const userRef   = useRef(null);
+  const searchRef = useRef(null);
+
+  // Apply theme to html element
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+    localStorage.setItem('tf-theme', isDark ? 'dark' : 'light');
+  }, [isDark]);
+
 
   const unreadCount = notifs.filter(n => !n.read).length;
 
   // Close dropdowns on outside click
   useEffect(() => {
     function handleClick(e) {
-      if (notifRef.current && !notifRef.current.contains(e.target)) setShowNotifs(false);
-      if (userRef.current  && !userRef.current.contains(e.target))  setShowUserMenu(false);
+      if (notifRef.current  && !notifRef.current.contains(e.target))  setShowNotifs(false);
+      if (userRef.current   && !userRef.current.contains(e.target))   setShowUserMenu(false);
+      if (searchRef.current && !searchRef.current.contains(e.target)) { setShowSearch(false); setSearchQuery(''); }
     }
     document.addEventListener('mousedown', handleClick);
     return () => document.removeEventListener('mousedown', handleClick);
   }, []);
+
+  // Global search across leads, deals, users
+  const handleSearch = useCallback((q) => {
+    setSearchQuery(q);
+    if (!q.trim()) { setSearchResults([]); setShowSearch(false); return; }
+    const low = q.toLowerCase();
+    const companyId = currentCompany?.id;
+    const results = [];
+    // Leads / Contacts
+    leads?.filter(l => l.companyId === companyId && (
+      l.name?.toLowerCase().includes(low) || l.contact?.toLowerCase().includes(low) || l.email?.toLowerCase().includes(low)
+    )).slice(0, 3).forEach(l => results.push({ type:'Lead', label: l.name, sub: l.contact, color:'#0EA5E9', icon: TrendingUp, path: role === 'company_admin' ? '/company/leads' : '/user/leads' }));
+    // Deals
+    deals?.filter(d => d.companyId === companyId && d.name?.toLowerCase().includes(low))
+      .slice(0, 2).forEach(d => results.push({ type:'Deal', label: d.name, sub: `₹${(d.value||0).toLocaleString()}`, color:'#10B981', icon: Layers, path: role === 'company_admin' ? '/company/deals' : '/user/deals' }));
+    // Users
+    users?.filter(u => u.companyId === companyId && (
+      u.name?.toLowerCase().includes(low) || u.email?.toLowerCase().includes(low)
+    )).slice(0, 2).forEach(u => results.push({ type:'User', label: u.name, sub: u.role, color:'#A855F7', icon: Users, path: '/company/employees' }));
+    setSearchResults(results);
+    setShowSearch(results.length > 0);
+  }, [leads, deals, users, currentCompany, role]);
 
   const markAllRead  = () => setNotifs(prev => prev.map(n => ({...n, read:true})));
   const dismissNotif = (id) => setNotifs(prev => prev.filter(n => n.id !== id));
@@ -38,12 +76,17 @@ export default function Header({ role, onMenuToggle }) {
   const handleLogout = () => { logout(); navigate('/login'); };
 
   const roleColors = {
-    super_admin:   { bg:'rgba(168,85,247,0.12)', text:'#A855F7', label:'Super Admin'    },
-    company_admin: { bg:'rgba(14,165,233,0.12)', text:'#0EA5E9', label:'Company Admin'  },
-    manager:       { bg:'rgba(16,185,129,0.12)', text:'#10B981', label:'Manager'        },
-    sales:         { bg:'rgba(245,158,11,0.12)', text:'#F59E0B', label:'Sales'          },
-    support:       { bg:'rgba(99,102,241,0.12)', text:'#6366F1', label:'Support'        },
-    finance:       { bg:'rgba(239,68,68,0.12)',  text:'#EF4444', label:'Finance'        },
+    super_admin:      { bg:'rgba(168,85,247,0.12)', text:'#A855F7', label:'Super Admin'      },
+    company_admin:    { bg:'rgba(14,165,233,0.12)',  text:'#0EA5E9', label:'Company Admin'    },
+    manager:          { bg:'rgba(14,165,233,0.12)',  text:'#0EA5E9', label:'Manager'          },
+    sales:            { bg:'rgba(245,158,11,0.12)',  text:'#F59E0B', label:'Sales Rep'        },
+    support:          { bg:'rgba(99,102,241,0.12)',  text:'#6366F1', label:'Support'          },
+    finance:          { bg:'rgba(16,185,129,0.12)',  text:'#10B981', label:'Finance'          },
+    marketing:        { bg:'rgba(236,72,153,0.12)',  text:'#EC4899', label:'Marketing'        },
+    hr:               { bg:'rgba(139,92,246,0.12)',  text:'#8B5CF6', label:'HR'               },
+    operations:       { bg:'rgba(20,184,166,0.12)',  text:'#14B8A6', label:'Operations'       },
+    customer_success: { bg:'rgba(249,115,22,0.12)',  text:'#F97316', label:'Customer Success' },
+    legal:            { bg:'rgba(100,116,139,0.12)', text:'#64748B', label:'Legal'            },
   };
   const roleStyle = roleColors[currentUser?.role] || roleColors.sales;
 
@@ -59,9 +102,53 @@ export default function Header({ role, onMenuToggle }) {
           onMouseLeave={e=>e.currentTarget.style.color='var(--text-muted)'}>
           <Menu size={18} />
         </button>
-        <div className="relative hidden md:block">
-          <Search size={14} className="absolute right-3 top-1/2 -translate-y-1/2" style={{ color:'var(--text-muted)' }} />
-          <input placeholder="Search anything..." className="input-field pl-9" style={{ width:280, height:36, fontSize:13 }} />
+        {/* Search */}
+        <div className="relative hidden md:block" ref={searchRef}>
+          <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2" style={{ color:'var(--text-muted)' }} />
+          <input
+            placeholder="Search anything..."
+            className="input-field pl-9"
+            style={{ width:280, height:36, fontSize:13 }}
+            value={searchQuery}
+            onChange={e => handleSearch(e.target.value)}
+            onFocus={() => searchQuery && setShowSearch(searchResults.length > 0)}
+          />
+          {searchQuery && (
+            <button onClick={() => { setSearchQuery(''); setSearchResults([]); setShowSearch(false); }}
+              style={{ position:'absolute', right:10, top:'50%', transform:'translateY(-50%)', background:'none', border:'none', cursor:'pointer', color:'var(--text-muted)', display:'flex' }}>
+              <X size={12} />
+            </button>
+          )}
+          {/* Results dropdown */}
+          {showSearch && (
+            <div className="absolute left-0 top-full mt-2 rounded-xl shadow-2xl z-50 overflow-hidden"
+              style={{ background:'var(--bg-card)', border:'1px solid var(--border-primary)', width:340 }}>
+              <div className="px-3 py-2" style={{ borderBottom:'1px solid var(--border-primary)' }}>
+                <p style={{ fontSize:10, fontWeight:700, textTransform:'uppercase', letterSpacing:'0.06em', color:'var(--text-muted)' }}>
+                  {searchResults.length} result{searchResults.length !== 1 ? 's' : ''} for "{searchQuery}"
+                </p>
+              </div>
+              {searchResults.map((r, i) => {
+                const Icon = r.icon;
+                return (
+                  <button key={i} onClick={() => { navigate(r.path); setShowSearch(false); setSearchQuery(''); }}
+                    className="w-full flex items-center gap-3 px-4 py-2.5 text-left transition-colors"
+                    style={{ border:'none', background:'transparent', cursor:'pointer' }}
+                    onMouseEnter={e => e.currentTarget.style.background='var(--bg-hover)'}
+                    onMouseLeave={e => e.currentTarget.style.background='transparent'}>
+                    <div style={{ width:28, height:28, borderRadius:8, background:`${r.color}15`, display:'flex', alignItems:'center', justifyContent:'center', flexShrink:0 }}>
+                      <Icon size={12} style={{ color:r.color }} />
+                    </div>
+                    <div style={{ flex:1, minWidth:0 }}>
+                      <p style={{ fontSize:12, fontWeight:700, color:'var(--text-primary)', overflow:'hidden', textOverflow:'ellipsis', whiteSpace:'nowrap' }}>{r.label}</p>
+                      <p style={{ fontSize:10, color:'var(--text-muted)' }}>{r.sub}</p>
+                    </div>
+                    <span style={{ fontSize:9, fontWeight:700, padding:'2px 7px', borderRadius:20, background:`${r.color}12`, color:r.color }}>{r.type}</span>
+                  </button>
+                );
+              })}
+            </div>
+          )}
         </div>
       </div>
 
@@ -72,6 +159,17 @@ export default function Header({ role, onMenuToggle }) {
           style={{ background:roleStyle.bg, color:roleStyle.text }}>
           {roleStyle.label}
         </div>
+
+        {/* Theme toggle */}
+        <button
+          onClick={() => setIsDark(d => !d)}
+          className="p-2 rounded-lg transition-colors"
+          title={isDark ? 'Switch to Light mode' : 'Switch to Dark mode'}
+          style={{ color:'var(--text-muted)', background:'transparent' }}
+          onMouseEnter={e => e.currentTarget.style.background='var(--bg-hover)'}
+          onMouseLeave={e => e.currentTarget.style.background='transparent'}>
+          {isDark ? <Sun size={16} /> : <Moon size={16} />}
+        </button>
 
         {/* Notifications */}
         <div className="relative" ref={notifRef}>

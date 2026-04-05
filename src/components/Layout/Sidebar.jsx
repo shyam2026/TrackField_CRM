@@ -37,21 +37,40 @@ const COMPANY_ADMIN_NAV = [
 const USER_NAV_BASE = [
   { path: '/user/dashboard', label: 'Dashboard',  icon: LayoutDashboard },
   { path: '/user/profile',   label: 'My Profile', icon: UserCircle },
-  { path: '/user/leads',     label: 'My Leads',   icon: TrendingUp,  module: 'leads',    roles: ['sales','manager'] },
-  { path: '/user/deals',     label: 'My Deals',   icon: Layers,      module: 'deals',    roles: ['sales','manager','finance'] },
+  { path: '/user/leads',     label: 'My Leads',   icon: TrendingUp,  module: 'leads',    roles: ['sales','manager','marketing','customer_success'] },
+  { path: '/user/deals',     label: 'My Deals',   icon: Layers,      module: 'deals',    roles: ['sales','manager','finance','legal'] },
   { path: '/user/tasks',     label: 'My Tasks',   icon: CheckSquare, module: 'tasks' },
-  { path: '/user/contacts',  label: 'Contacts',   icon: Contact,     module: 'contacts', roles: ['sales','manager','support'] },
-  { path: '/user/tickets',   label: 'Tickets',    icon: Ticket,      module: 'tickets',  roles: ['support','manager'] },
+  { path: '/user/contacts',  label: 'Contacts',   icon: Contact,     module: 'contacts', roles: ['sales','manager','support','customer_success','marketing','hr'] },
+  { path: '/user/tickets',   label: 'Tickets',    icon: Ticket,      module: 'tickets',  roles: ['support','manager','customer_success','operations'] },
 ];
 
 /* ─── Role color config ─── */
 const ROLE_COLORS = {
-  super_admin:   '#A855F7',
-  company_admin: '#0EA5E9',
-  manager:       '#0EA5E9',
-  sales:         '#F59E0B',
-  support:       '#6366F1',
-  finance:       '#10B981',
+  super_admin:      '#A855F7',
+  company_admin:    '#0EA5E9',
+  manager:          '#0EA5E9',
+  sales:            '#F59E0B',
+  support:          '#6366F1',
+  finance:          '#10B981',
+  marketing:        '#EC4899',
+  hr:               '#8B5CF6',
+  operations:       '#14B8A6',
+  customer_success: '#F97316',
+  legal:            '#64748B',
+};
+
+const ROLE_LABELS = {
+  super_admin:      'Super Admin',
+  company_admin:    'Company Admin',
+  manager:          'Manager',
+  sales:            'Sales Rep',
+  support:          'Support',
+  finance:          'Finance',
+  marketing:        'Marketing',
+  hr:               'HR',
+  operations:       'Operations',
+  customer_success: 'Customer Success',
+  legal:            'Legal',
 };
 
 export default function Sidebar({ role, open, setOpen }) {
@@ -79,7 +98,7 @@ export default function Sidebar({ role, open, setOpen }) {
 
   const roleLabel = role === 'super_admin' ? 'Super Admin'
     : role === 'company_admin' ? 'Company Admin'
-    : currentUser?.role ? currentUser.role.charAt(0).toUpperCase() + currentUser.role.slice(1)
+    : currentUser?.role ? (ROLE_LABELS[currentUser.role] || currentUser.role.replace('_', ' '))
     : 'User';
 
   /* ─── Nav group headers ─── */

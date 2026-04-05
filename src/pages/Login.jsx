@@ -71,13 +71,16 @@ export default function Login() {
   return (
     <div className="min-h-screen flex grid-bg" style={{ background: 'var(--bg-primary)' }}>
       {/* Left Panel */}
-      <div className="hidden lg:flex flex-col justify-between w-1/2 p-12" style={{ borderRight: '1px solid var(--border-primary)' }}>
+      <div className="hidden lg:flex flex-col justify-between w-1/2 p-10" style={{ borderRight: '1px solid var(--border-primary)' }}>
         {/* Logo */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 -mt-5 ">
           <div className="w-10 h-10 rounded-xl flex items-center justify-center"
             style={{ background: 'linear-gradient(135deg, #0EA5E9, #6366F1)' }}>
             <span className="font-display font-800 text-white text-sm tracking-widest">TF</span>
           </div>
+          <span className="font-display font-700 text-xl tracking-widest" style={{ color: 'var(--text-primary)', letterSpacing: '0.15em' }}>
+            TRACKFIELD
+          </span>
         </div>
 
         {/* Hero text */}

@@ -22,6 +22,27 @@
   --accent-purple: #A855F7;
 }
 
+/* ── LIGHT THEME ─────────────────────────────────────────── */
+[data-theme="light"] {
+  --bg-primary:    #F1F5F9;
+  --bg-secondary:  #FFFFFF;
+  --bg-card:       #FFFFFF;
+  --bg-hover:      #F8FAFC;
+  --border-primary:#E2E8F0;
+  --border-accent: #0EA5E9;
+  --text-primary:  #0F172A;
+  --text-secondary:#475569;
+  --text-muted:    #94A3B8;
+  color-scheme: light;
+}
+
+[data-theme="light"] body {
+  background-color: var(--bg-primary);
+}
+
+[data-theme="light"] ::-webkit-scrollbar-track { background: #E2E8F0; }
+[data-theme="light"] ::-webkit-scrollbar-thumb { background: #CBD5E1; }
+
 * {
   box-sizing: border-box;
 }
