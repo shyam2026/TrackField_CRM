@@ -7,6 +7,7 @@ import {
   initialTasks,
   initialPayments,
   initialAutomations,
+  initialTickets,
   DEFAULT_ROLE_PERMISSIONS,
 } from '../data/mockData';
 
@@ -24,6 +25,7 @@ export function AuthProvider({ children }) {
   const [tasks, setTasks] = useState(initialTasks);
   const [payments, setPayments] = useState(initialPayments);
   const [automations, setAutomations] = useState(initialAutomations);
+  const [tickets, setTickets] = useState(initialTickets);
   const [rolePermissions, setRolePermissions] = useState(DEFAULT_ROLE_PERMISSIONS);
 
   // ─── SUPER ADMIN CREDENTIALS ───────────────────────────────────────────────
@@ -176,6 +178,29 @@ export function AuthProvider({ children }) {
   const deleteAutomation = (id) => setAutomations(prev => prev.filter(a => a.id !== id));
   const toggleAutomation = (id) => setAutomations(prev => prev.map(a => a.id === id ? { ...a, status: !a.status } : a));
 
+  // ─── TICKETS CRUD ─────────────────────────────────────────────────────────
+  const addTicket = (ticket) => {
+    const newTicket = {
+      ...ticket,
+      id: `tk${Date.now()}`,
+      created: new Date().toISOString().split('T')[0],
+      status: 'open',
+      companyId: currentCompany?.id,
+      createdBy: currentUser?.id,
+      createdByName: currentUser?.name,
+      resolvedBy: null,
+      resolvedAt: null,
+      comment: '',
+    };
+    setTickets(prev => [newTicket, ...prev]);
+    return newTicket;
+  };
+  const updateTicket = (id, updates) => setTickets(prev => prev.map(t => t.id === id ? { ...t, ...updates } : t));
+  const deleteTicket = (id) => setTickets(prev => prev.filter(t => t.id !== id));
+  const resolveTicket = (id, comment) => setTickets(prev => prev.map(t =>
+    t.id === id ? { ...t, status: 'resolved', resolvedBy: currentUser?.id, resolvedByName: currentUser?.name, resolvedAt: new Date().toISOString().split('T')[0], comment } : t
+  ));
+
   // ─── MODULE CONTROL (Company Admin) ──────────────────────────────────────
   const toggleCompanyModule = (moduleId) => {
     if (!currentCompany) return;
@@ -213,6 +238,7 @@ export function AuthProvider({ children }) {
       tasks, addTask, updateTask, deleteTask,
       payments, setPayments,
       automations, addAutomation, updateAutomation, deleteAutomation, toggleAutomation,
+      tickets, addTicket, updateTicket, deleteTicket, resolveTicket,
       rolePermissions, updateRolePermission,
       toggleCompanyModule,
     }}>

@@ -41,7 +41,7 @@ const USER_NAV_BASE = [
   { path: '/user/deals',     label: 'My Deals',   icon: Layers,      module: 'deals',    roles: ['sales','manager','finance','legal'] },
   { path: '/user/tasks',     label: 'My Tasks',   icon: CheckSquare, module: 'tasks' },
   { path: '/user/contacts',  label: 'Contacts',   icon: Contact,     module: 'contacts', roles: ['sales','manager','support','customer_success','marketing','hr'] },
-  { path: '/user/tickets',   label: 'Tickets',    icon: Ticket,      module: 'tickets',  roles: ['support','manager','customer_success','operations'] },
+  { path: '/user/tickets',   label: 'Support Tickets', icon: Ticket,   module: 'tickets' },
 ];
 
 /* ─── Role color config ─── */
@@ -104,7 +104,7 @@ export default function Sidebar({ role, open, setOpen }) {
   /* ─── Nav group headers ─── */
   const USER_GROUPS = [
     { header: 'WORKSPACE', items: filteredNav.filter(i => ['Dashboard','My Profile'].includes(i.label)) },
-    { header: 'MY WORK',   items: filteredNav.filter(i => ['My Leads','My Deals','My Tasks','Contacts','Tickets'].includes(i.label)) },
+    { header: 'MY WORK',   items: filteredNav.filter(i => ['My Leads','My Deals','My Tasks','Contacts','Support Tickets'].includes(i.label)) },
   ];
 
   return (

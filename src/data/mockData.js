@@ -205,6 +205,13 @@ export const initialAutomations = [
   { id: 'a5', companyId: 'c3', name: 'Send brochure to new students',  trigger: 'Lead Created',    action: 'Send Email + Brochure',      status: true,  runs: 310 },
 ];
 
+export const initialTickets = [
+  { id: 'tk1', companyId: 'c1', title: 'Login issue for client portal', priority: 'high', status: 'open', createdBy: 'u2', customer: 'TechCorp', created: '2026-03-20', description: 'Client cannot access the dashboard after password reset.' },
+  { id: 'tk2', companyId: 'c1', title: 'Data export not working', priority: 'medium', status: 'in-progress', createdBy: 'u3', customer: 'StartupNest', created: '2026-04-01', description: 'CSV export throws 500 server error.' },
+  { id: 'tk3', companyId: 'c1', title: 'Invoice not generated', priority: 'low', status: 'resolved', createdBy: 'u13', customer: 'MedPlus', created: '2026-03-10', description: 'March invoice is missing from billing.' },
+  { id: 'tk4', companyId: 'c1', title: 'API rate limit exceeded', priority: 'high', status: 'open', createdBy: 'u2', customer: 'MegaCorp', created: '2026-04-05', description: 'Client hitting 429 consistently despite low usage.' },
+];
+
 // Role permissions matrix per company
 export const DEFAULT_ROLE_PERMISSIONS = {
   sales: {
@@ -215,7 +222,7 @@ export const DEFAULT_ROLE_PERMISSIONS = {
     reports: { view: false, create: false, edit: false, delete: false },
     payments: { view: false, create: false, edit: false, delete: false },
     automation: { view: false, create: false, edit: false, delete: false },
-    tickets: { view: false, create: true, edit: true, delete: false },
+    tickets: { view: true, create: true, edit: true, delete: false },
   },
   manager: {
     leads: { view: true, create: true, edit: true, delete: true },
@@ -245,7 +252,7 @@ export const DEFAULT_ROLE_PERMISSIONS = {
     reports: { view: true, create: true, edit: false, delete: false },
     payments: { view: true, create: true, edit: true, delete: false },
     automation: { view: false, create: false, edit: false, delete: false },
-    tickets: { view: false, create: false, edit: false, delete: false },
+    tickets: { view: true, create: true, edit: false, delete: false },
   },
   marketing: {
     leads: { view: true, create: true, edit: true, delete: false },
@@ -255,7 +262,7 @@ export const DEFAULT_ROLE_PERMISSIONS = {
     reports: { view: true, create: true, edit: false, delete: false },
     payments: { view: false, create: false, edit: false, delete: false },
     automation: { view: true, create: true, edit: true, delete: false },
-    tickets: { view: false, create: false, edit: false, delete: false },
+    tickets: { view: true, create: true, edit: false, delete: false },
   },
   hr: {
     leads: { view: false, create: false, edit: false, delete: false },
@@ -265,7 +272,7 @@ export const DEFAULT_ROLE_PERMISSIONS = {
     reports: { view: true, create: true, edit: false, delete: false },
     payments: { view: false, create: false, edit: false, delete: false },
     automation: { view: false, create: false, edit: false, delete: false },
-    tickets: { view: true, create: false, edit: false, delete: false },
+    tickets: { view: true, create: true, edit: false, delete: false },
   },
   operations: {
     leads: { view: true, create: false, edit: false, delete: false },
@@ -295,7 +302,7 @@ export const DEFAULT_ROLE_PERMISSIONS = {
     reports: { view: true, create: false, edit: false, delete: false },
     payments: { view: true, create: false, edit: false, delete: false },
     automation: { view: false, create: false, edit: false, delete: false },
-    tickets: { view: true, create: false, edit: false, delete: false },
+    tickets: { view: true, create: true, edit: false, delete: false },
   },
 };
 
