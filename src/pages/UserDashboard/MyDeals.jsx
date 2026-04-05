@@ -38,18 +38,27 @@ export default function UMyDeals() {
     const color = STAGE_COLORS[d.stage] || '#64748B';
     return (
       <div onClick={() => { if (hasPermission('deals','edit')) { setEditTarget(d); setForm({...d}); }}}
-           className="bg-card border border-primary rounded-xl p-3 mb-3 cursor-pointer hover:border-blue-500/50 transition-colors shadow-sm">
+           className="rounded-xl p-3 mb-3 cursor-pointer transition-all"
+           style={{
+             background: 'var(--bg-card)',
+             border: '1px solid var(--border-primary)',
+             boxShadow: '0 1px 4px rgba(0,0,0,0.15)',
+           }}
+           onMouseEnter={e => e.currentTarget.style.borderColor = '#3B82F6'}
+           onMouseLeave={e => e.currentTarget.style.borderColor = 'var(--border-primary)'}>
         <div className="flex items-start justify-between mb-2">
-          <p className="font-700 text-sm text-primary leading-tight">{d.name}</p>
+          <p className="font-700 text-sm leading-tight" style={{ color: 'var(--text-primary)' }}>{d.name}</p>
         </div>
-        <p className="text-xs text-secondary mb-3">{d.contact}</p>
+        <p className="text-xs mb-3" style={{ color: 'var(--text-secondary)' }}>{d.contact}</p>
         <div className="flex items-center justify-between">
           <span className="font-mono text-sm font-700" style={{ color: '#10B981' }}>₹{d.value?.toLocaleString()}</span>
-          <div className="bg-secondary px-2 py-0.5 rounded border border-primary text-[10px] font-700 text-secondary">
+          <div className="px-2 py-0.5 rounded text-[10px] font-700"
+               style={{ background: `${color}18`, color, border: `1px solid ${color}30` }}>
             {d.probability}% WIN
           </div>
         </div>
-        <div className="mt-3 h-1.5 w-full bg-secondary rounded-full overflow-hidden">
+        <div className="mt-3 h-1.5 w-full rounded-full overflow-hidden"
+             style={{ background: 'var(--border-primary)' }}>
           <div className="h-full rounded-full transition-all" style={{ width: `${d.probability}%`, background: color }} />
         </div>
       </div>
@@ -99,16 +108,22 @@ export default function UMyDeals() {
             const stageDeals = filteredDeals.filter(d => d.stage === stage);
             const color = STAGE_COLORS[stage];
             return (
-              <div key={stage} className="bg-secondary/50 rounded-xl p-3 flex-shrink-0 snap-start flex flex-col"
-                   style={{ width: 300, borderTop: `3px solid ${color}` }}>
+              <div key={stage} className="rounded-xl p-3 flex-shrink-0 snap-start flex flex-col"
+                   style={{ width: 300, background: 'var(--bg-secondary)', borderTop: `3px solid ${color}`, borderLeft: '1px solid var(--border-primary)', borderRight: '1px solid var(--border-primary)', borderBottom: '1px solid var(--border-primary)', borderRadius: 12 }}>
                 <div className="flex items-center justify-between mb-3 px-1">
-                  <h3 className="font-700 text-sm text-primary uppercase tracking-wider">{stage}</h3>
-                  <span className="text-xs font-700 bg-card border border-primary px-2 py-0.5 rounded-full text-secondary">{stageDeals.length}</span>
+                  <h3 className="font-700 text-sm uppercase tracking-wider" style={{ color: 'var(--text-primary)' }}>{stage}</h3>
+                  <span className="text-xs font-700 px-2 py-0.5 rounded-full"
+                        style={{ background: `${color}15`, color, border: `1px solid ${color}30` }}>
+                    {stageDeals.length}
+                  </span>
                 </div>
                 <div className="flex-1 overflow-y-auto pr-1">
                   {stageDeals.map(d => <KanbanCard key={d.id} d={d} />)}
                   {stageDeals.length === 0 && (
-                    <div className="h-24 border-2 border-dashed border-primary/50 rounded-xl flex items-center justify-center text-xs text-muted/50 font-600">Empty</div>
+                    <div className="h-24 rounded-xl flex items-center justify-center text-xs font-600"
+                         style={{ border: '2px dashed var(--border-primary)', color: 'var(--text-muted)' }}>
+                      Empty
+                    </div>
                   )}
                 </div>
               </div>
