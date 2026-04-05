@@ -78,9 +78,6 @@ export default function Login() {
             style={{ background: 'linear-gradient(135deg, #0EA5E9, #6366F1)' }}>
             <span className="font-display font-800 text-white text-sm tracking-widest">TF</span>
           </div>
-          <span className="font-display font-700 text-xl tracking-widest" style={{ color: 'var(--text-primary)', letterSpacing: '0.15em' }}>
-            TRACKFIELD
-          </span>
         </div>
 
         {/* Hero text */}
