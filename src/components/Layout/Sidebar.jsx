@@ -35,14 +35,15 @@ const COMPANY_ADMIN_NAV = [
 ];
 
 const USER_NAV_BASE = [
-  { path: '/user/dashboard', label: 'Dashboard',  icon: LayoutDashboard },
-  { path: '/user/profile',   label: 'My Profile', icon: UserCircle },
-  { path: '/user/leads',     label: 'My Leads',   icon: TrendingUp,  module: 'leads',    roles: ['sales','manager','marketing','customer_success'] },
-  { path: '/user/deals',     label: 'My Deals',   icon: Layers,      module: 'deals',    roles: ['sales','manager','finance','legal'] },
-  { path: '/user/tasks',     label: 'My Tasks',   icon: CheckSquare, module: 'tasks' },
-  { path: '/user/contacts',  label: 'Contacts',   icon: Contact,     module: 'contacts', roles: ['sales','manager','support','customer_success','marketing','hr'] },
-  { path: '/user/tickets',   label: 'Support Tickets', icon: Ticket,   module: 'tickets' },
+  { path: '/user/dashboard', label: 'Dashboard',       icon: LayoutDashboard },
+  { path: '/user/profile',   label: 'My Profile',      icon: UserCircle },
+  { path: '/user/leads',     label: 'My Leads',        icon: TrendingUp,  module: 'leads',    roles: ['sales','manager','marketing','customer_success'] },
+  { path: '/user/deals',     label: 'My Deals',        icon: Layers,      module: 'deals',    roles: ['sales','manager','finance','legal'] },
+  { path: '/user/tasks',     label: 'My Tasks',        icon: CheckSquare },
+  { path: '/user/contacts',  label: 'Contacts',        icon: Contact },
+  { path: '/user/tickets',   label: 'Support Tickets', icon: Ticket,      module: 'tickets' },
 ];
+
 
 /* ─── Role color config ─── */
 const ROLE_COLORS = {
@@ -249,4 +250,4 @@ export default function Sidebar({ role, open, setOpen }) {
       </div>
     </aside>
   );
-}
+}
