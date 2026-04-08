@@ -26,8 +26,8 @@ const COMPANY_ADMIN_NAV = [
   { path: '/company/leads',      label: 'Leads',          icon: TrendingUp,  module: 'leads' },
   { path: '/company/deals',      label: 'Deals',          icon: Layers,      module: 'deals' },
   { path: '/company/contacts',   label: 'Contacts',       icon: Contact,     module: 'contacts' },
-  { path: '/company/calendar',   label: 'Calendar',       icon: Calendar,    module: 'tasks' },
   { path: '/company/payments',   label: 'Payments',       icon: CreditCard,  module: 'payments' },
+  { path: '/company/leaves',     label: 'Leave Approvals',icon: Calendar,    module: 'hrms' },
   { path: '/company/automation', label: 'Automation',     icon: Zap,         module: 'automation' },
   { path: '/company/reports',    label: 'Reports',        icon: BarChart2,   module: 'reports' },
   { path: '/company/modules',    label: 'Module Control', icon: Shield },
@@ -42,6 +42,8 @@ const USER_NAV_BASE = [
   { path: '/user/tasks',     label: 'My Tasks',        icon: CheckSquare },
   { path: '/user/contacts',  label: 'Contacts',        icon: Contact },
   { path: '/user/tickets',   label: 'Support Tickets', icon: Ticket,      module: 'tickets' },
+  { path: '/user/hrms',      label: 'My Leaves',       icon: Calendar,    module: 'hrms' },
+  { path: '/user/leave-approvals', label: 'Leave Approvals', icon: CheckSquare, module: 'hrms', roles: ['hr', 'manager', 'company_admin'] },
 ];
 
 
@@ -104,8 +106,8 @@ export default function Sidebar({ role, open, setOpen }) {
 
   /* ─── Nav group headers ─── */
   const USER_GROUPS = [
-    { header: 'WORKSPACE', items: filteredNav.filter(i => ['Dashboard','My Profile'].includes(i.label)) },
-    { header: 'MY WORK',   items: filteredNav.filter(i => ['My Leads','My Deals','My Tasks','Contacts','Support Tickets'].includes(i.label)) },
+    { header: 'WORKSPACE', items: filteredNav.filter(i => ['Dashboard','My Profile','My Leaves'].includes(i.label)) },
+    { header: 'MY WORK',   items: filteredNav.filter(i => ['My Leads','My Deals','My Tasks','Contacts','Support Tickets','Leave Approvals'].includes(i.label)) },
   ];
 
   return (

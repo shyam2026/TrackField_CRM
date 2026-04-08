@@ -417,3 +417,12 @@ export const SIGNUP_TREND = [
   { month: 'Jan', companies: 5, users: 34 },
 ];
 
+export const initialLeaves = [
+  { id: 'lv1', userId: 'u2', companyId: 'c1', type: 'Sick', startDate: '2026-04-10', endDate: '2026-04-11', status: 'pending', reason: 'Fever and cold', appliedOn: '2026-04-08' },
+  { id: 'lv2', userId: 'u3', companyId: 'c1', type: 'Casual', startDate: '2026-04-15', endDate: '2026-04-16', status: 'approved', reason: 'Personal work', appliedOn: '2026-04-01' },
+];
+
+export const initialAttendance = [
+  { id: 'at1', userId: 'u2', date: '2026-04-08', checkIn: '09:05 AM', checkOut: '06:10 PM', status: 'Present' },
+  { id: 'at2', userId: 'u3', date: '2026-04-08', checkIn: '09:00 AM', checkOut: '06:00 PM', status: 'Present' },
+];

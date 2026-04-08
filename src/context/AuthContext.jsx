@@ -8,6 +8,8 @@ import {
   initialPayments,
   initialAutomations,
   initialTickets,
+  initialLeaves,
+  initialAttendance,
   DEFAULT_ROLE_PERMISSIONS,
 } from '../data/mockData';
 
@@ -18,15 +20,33 @@ export function AuthProvider({ children }) {
   const [currentCompany, setCurrentCompany] = useState(null);
 
   // ─── DATA STATE ────────────────────────────────────────────────────────────
-  const [companies, setCompanies] = useState(initialCompanies);
-  const [users, setUsers] = useState(initialUsers);
+  const [companies, setCompanies] = useState(() => initialCompanies.map(c => ({
+    ...c,
+    enabledModules: c.enabledModules?.includes('hrms') ? c.enabledModules : [...(c.enabledModules || []), 'hrms']
+  })));
+  const [users, setUsers] = useState(() => initialUsers.map(u => ({
+    ...u,
+    joiningDate: u.joiningDate || '2024-01-10',
+    employeeId: u.employeeId || 'EMP-' + u.id.replace('u', '').padStart(3, '0'),
+    verificationStatus: u.verificationStatus !== undefined ? u.verificationStatus : true,
+    documents: u.documents || [{name: 'Resume.pdf', type:'resume'}, {name: 'ID_Proof.pdf', type:'id'}],
+    offerLetter: u.offerLetter || 'Offer_Letter.pdf'
+  })));
   const [leads, setLeads] = useState(initialLeads);
   const [deals, setDeals] = useState(initialDeals);
   const [tasks, setTasks] = useState(initialTasks);
   const [payments, setPayments] = useState(initialPayments);
   const [automations, setAutomations] = useState(initialAutomations);
   const [tickets, setTickets] = useState(initialTickets);
-  const [rolePermissions, setRolePermissions] = useState(DEFAULT_ROLE_PERMISSIONS);
+  const [leaves, setLeaves] = useState(initialLeaves);
+  const [attendance, setAttendance] = useState(initialAttendance);
+  const [rolePermissions, setRolePermissions] = useState(() => {
+    const perms = JSON.parse(JSON.stringify(DEFAULT_ROLE_PERMISSIONS));
+    Object.keys(perms).forEach(role => {
+      perms[role].hrms = { view: true, create: true, edit: ['hr', 'manager', 'company_admin'].includes(role), delete: false };
+    });
+    return perms;
+  });
 
   // ─── SUPER ADMIN CREDENTIALS ───────────────────────────────────────────────
   const SUPER_ADMIN = { email: 'owner@trackfield.io', password: 'trackfield123', name: 'TrackField Admin', role: 'super_admin' };
@@ -201,6 +221,33 @@ export function AuthProvider({ children }) {
     t.id === id ? { ...t, status: 'resolved', resolvedBy: currentUser?.id, resolvedByName: currentUser?.name, resolvedAt: new Date().toISOString().split('T')[0], comment } : t
   ));
 
+  // ─── HRMS (LEAVES & ATTENDANCE) CRUD ──────────────────────────────────────
+  const addLeave = (leave) => {
+    const newLeave = {
+      ...leave,
+      id: `lv${Date.now()}`,
+      appliedOn: new Date().toISOString().split('T')[0],
+      status: 'pending',
+      companyId: currentCompany?.id,
+      userId: currentUser?.id,
+    };
+    setLeaves(prev => [newLeave, ...prev]);
+    return newLeave;
+  };
+  const updateLeave = (id, updates) => setLeaves(prev => prev.map(l => l.id === id ? { ...l, ...updates } : l));
+
+  const addAttendance = (record) => {
+    const newRecord = {
+      ...record,
+      id: `at${Date.now()}`,
+      userId: currentUser?.id,
+      date: new Date().toISOString().split('T')[0],
+    };
+    setAttendance(prev => [newRecord, ...prev]);
+    return newRecord;
+  };
+  const updateAttendance = (id, updates) => setAttendance(prev => prev.map(a => a.id === id ? { ...a, ...updates } : a));
+
   // ─── MODULE CONTROL (Company Admin) ──────────────────────────────────────
   const toggleCompanyModule = (moduleId) => {
     if (!currentCompany) return;
@@ -239,6 +286,8 @@ export function AuthProvider({ children }) {
       payments, setPayments,
       automations, addAutomation, updateAutomation, deleteAutomation, toggleAutomation,
       tickets, addTicket, updateTicket, deleteTicket, resolveTicket,
+      leaves, addLeave, updateLeave,
+      attendance, addAttendance, updateAttendance,
       rolePermissions, updateRolePermission,
       toggleCompanyModule,
     }}>

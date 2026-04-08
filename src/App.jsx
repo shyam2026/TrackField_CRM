@@ -39,6 +39,8 @@ import UTasks from './pages/UserDashboard/Tasks';
 import UContacts from './pages/UserDashboard/Contacts';
 import UTickets from './pages/UserDashboard/Tickets';
 import UProfile from './pages/UserDashboard/Profile';
+import UHRMS from './pages/UserDashboard/HRMSUser';
+import LeaveManagement from './pages/UserDashboard/LeaveManagement';
 
 function ProtectedRoute({ children, allowedRoles }) {
   const { currentUser } = useAuth();
@@ -95,6 +97,7 @@ function AppRoutes() {
         <Route path="calendar"   element={<CACalendar />} />
         <Route path="automation" element={<CAAutomation />} />
         <Route path="reports"    element={<CAReports />} />
+        <Route path="leaves"     element={<LeaveManagement />} />
         <Route path="modules"    element={<CAModuleControl />} />
         <Route path="settings"   element={<CASettings />} />
         <Route index element={<Navigate to="dashboard" replace />} />
@@ -113,6 +116,8 @@ function AppRoutes() {
         <Route path="tasks"      element={<UTasks />} />
         <Route path="contacts"   element={<UContacts />} />
         <Route path="tickets"    element={<UTickets />} />
+        <Route path="hrms"       element={<UHRMS />} />
+        <Route path="leave-approvals" element={<LeaveManagement />} />
         <Route index element={<Navigate to="dashboard" replace />} />
       </Route>
 
